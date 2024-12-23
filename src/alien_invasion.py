@@ -12,7 +12,7 @@ def run_game():
     screen = pygame.display.set_mode((fi_settings.screen_width, fi_settings.screen_height))
     pygame.display.set_caption("Frog Invasion")
 
-    ship = Ship(screen)
+    ship = Ship(fi_settings, screen)
 
     # start the main loop for the game
     while True:
