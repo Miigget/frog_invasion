@@ -65,19 +65,27 @@ def update_bullets(bullets):
     if bullet.rect.bottom <= 0:
       bullets.remove(bullet)
 
+def get_number_aliens_x(fi_settings, alien_width):
+  """Determine the number of aliens that fit in a row"""
+  available_space_x = fi_settings.screen_width - 2 * alien_width
+  number_aliens_x = int(available_space_x / (2 * alien_width))
+  return number_aliens_x
+
+def create_alien(fi_settings, screen, aliens, alien_number):
+  """Create an alien and place it in the row"""
+  alien = Alien(fi_settings, screen)
+  alien_width = alien.rect.width
+  alien.x = alien_width + 2 * alien_width * alien_number
+  alien.rect.x = alien.x
+  aliens.add(alien)
+
 def create_fleet(fi_settings, screen, aliens):
   """Create full fleet of aliens"""
   # create an alien and find the number of aliens in a row
   # spacing between aliens is equal to one alien width
   alien = Alien(fi_settings, screen)
-  alien_width = alien.rect.width
-  available_space_x = fi_settings.screen_width - 2 * alien_width
-  number_aliens_x = int(available_space_x / (2 * alien_width))
+  number_aliens_x = get_number_aliens_x(fi_settings, alien.rect.width)
 
   # create first row of aliens
   for alien_number in range(number_aliens_x):
-    # create alien and place it in the row
-    alien = Alien(fi_settings, screen)
-    alien.x = alien_width + 2 * alien_width * alien_number
-    alien.rect.x = alien.x
-    aliens.add(alien)
+    create_alien(fi_settings, screen, aliens, alien_number)
