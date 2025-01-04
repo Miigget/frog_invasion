@@ -65,6 +65,10 @@ def update_bullets(fi_settings, screen, ship, aliens, bullets):
     if bullet.rect.bottom <= 0:
       bullets.remove(bullet)
 
+  check_bullet_alien_collision(fi_settings, screen, ship, aliens, bullets)
+
+def check_bullet_alien_collision(fi_settings, screen, ship, aliens, bullets):
+  """Respond to bullet-alien collisions"""
   # check for any bullets that have hit aliens
   # if so, get rid of the bullet and the alien
   collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
