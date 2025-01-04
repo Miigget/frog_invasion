@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import Group
 
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 import game_functions as gf
 
@@ -12,6 +13,8 @@ def run_game():
     fi_settings = Settings()
     screen = pygame.display.set_mode((fi_settings.screen_width, fi_settings.screen_height))
     pygame.display.set_caption("Frog Invasion")
+
+    stats = GameStats(fi_settings)
 
     ship = Ship(fi_settings, screen)
 
@@ -31,7 +34,7 @@ def run_game():
         
         gf.update_bullets(fi_settings, screen, ship, aliens, bullets)
 
-        gf.update_aliens(fi_settings, ship, aliens)
+        gf.update_aliens(fi_settings, stats, screen, ship, aliens, bullets)
         
         gf.update_screen(fi_settings, screen, ship, aliens, bullets)
 
