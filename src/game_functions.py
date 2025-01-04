@@ -55,7 +55,7 @@ def update_screen(fi_settings, screen, ship, aliens, bullets):
   # make the most recently drawn screen visible
   pygame.display.flip()
 
-def update_bullets(bullets):
+def update_bullets(aliens, bullets):
   """Update position of bullets and get rid of old bullets"""
   # update position
   bullets.update()
@@ -64,6 +64,10 @@ def update_bullets(bullets):
   for bullet in bullets.copy():
     if bullet.rect.bottom <= 0:
       bullets.remove(bullet)
+
+  # check for any bullets that have hit aliens
+  # if so, get rid of the bullet and the alien
+  collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
 def get_number_aliens_x(fi_settings, alien_width):
   """Determine the number of aliens that fit in a row"""
