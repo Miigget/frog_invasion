@@ -146,19 +146,23 @@ def change_fleet_direction(fi_settings, aliens):
 
 def ship_hit(fi_settings, stats, screen, ship, aliens, bullets):
     """Respond to ship being hit by alien"""
-    # decrement ships_left
-    stats.ships_left -= 1
+    if stats.ships_left > 0:
+        # decrement ships_left
+        stats.ships_left -= 1
 
-    # empty the list of aliens and bullets
-    aliens.empty()
-    bullets.empty()
+        # empty the list of aliens and bullets
+        aliens.empty()
+        bullets.empty()
 
-    # create a new fleet and center the ship
-    create_fleet(fi_settings, screen, ship, aliens)
-    ship.center_ship()
+        # create a new fleet and center the ship
+        create_fleet(fi_settings, screen, ship, aliens)
+        ship.center_ship()
 
-    # pause
-    sleep(1.2)
+        # pause
+        sleep(1.2)
+
+    else:
+        stats.game_active = False
 
 
 def check_aliens_bottom(fi_settings, stats, screen, ship, aliens, bullets):

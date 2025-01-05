@@ -5,6 +5,8 @@ class GameStats():
         """Initialize statistics"""
         self.fi_settings = fi_settings
         self.reset_stats()
+        # start game in an active state
+        self.game_active = True
 
     def reset_stats(self):
         """Initialize statistics that can change during the game"""
