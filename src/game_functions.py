@@ -46,7 +46,7 @@ def check_events(fi_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(fi_settings, screen, ship, aliens, bullets):
+def update_screen(fi_settings, screen, stats, ship, aliens, bullets, play_button):
     """Update images on the screen and flip to the new screen"""
     # Redraw the screen during each pass through the loop
     screen.fill(fi_settings.bg_color)
@@ -59,6 +59,10 @@ def update_screen(fi_settings, screen, ship, aliens, bullets):
 
     ship.blitme()
     aliens.draw(screen)
+
+    # draw play button if the game is inactive
+    if not stats.game_active:
+        play_button.draw_button()
 
     # make the most recently drawn screen visible
     pygame.display.flip()
