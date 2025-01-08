@@ -1,5 +1,5 @@
-class Settings:
-    """A class to store all game settings"""
+class Settings: 
+    """A class to store all game settings"""  
 
     def __init__(self):
         """Initialize game settings"""
@@ -14,7 +14,7 @@ class Settings:
 
         # Bullet settings
         self.bullet_speed_factor = 0.3
-        self.bullet_width = 300
+        self.bullet_width = 5
         self.bullet_height = 15
         self.bullet_color = 60, 60, 60
         self.bullets_allowed = 3
@@ -26,6 +26,9 @@ class Settings:
 
         # how quickly game speeds up
         self.speedup_scale = 1.1
+
+        # how quickly alien point values increase
+        self.score_scale = 1.1
 
         self.initialize_dynamic_settings()
 
@@ -41,3 +44,5 @@ class Settings:
         self.ship_speed_factor *= self.speedup_scale
         self.bullet_speed_factor *= self.speedup_scale
         self.alien_speed_factor *= self.speedup_scale
+
+        self.alien_points = int(self.alien_points * self.score_scale)

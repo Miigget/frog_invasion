@@ -2,6 +2,7 @@ import sys
 from time import sleep
 import pygame
 
+from settings import Settings
 from bullet import Bullet
 from alien import Alien
 
@@ -73,7 +74,7 @@ def check_play_button(fi_settings, screen, stats, play_button, ship, aliens, bul
         ship.center_ship()
 
 
-def update_screen(fi_settings, screen, stats, sb, ship, aliens, bullets, play_button):
+def update_screen(fi_settings: Settings, screen, stats, sb, ship, aliens, bullets, play_button):
     """Update images on the screen and flip to the new screen"""
     # Redraw the screen during each pass through the loop
     screen.fill(fi_settings.bg_color)
@@ -169,7 +170,7 @@ def create_fleet(fi_settings, screen, ship, aliens):
 
 
 def check_fleet_edges(fi_settings, aliens):
-    """Respond if any aliens have reached an edge"""
+    # """Respond if any aliens have reached an edge"""
     for alien in aliens.sprites():
         if alien.check_edges():
             change_fleet_direction(fi_settings, aliens)
